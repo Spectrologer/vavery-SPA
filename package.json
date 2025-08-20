@@ -1,0 +1,15 @@
+{
+  "name": "my-spa-project",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://Hauntologist.github.io/vavery-SPA",
+  "dependencies": {
+    "react-scripts": "^5.0.1"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
