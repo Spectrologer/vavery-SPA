@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaughn Avery - Portfolio</title>
+    
+    <!-- Grabbing Tailwind CSS to make styling easier. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Using Font Awesome for all the cool icons. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- My custom stylesheet for things Tailwind doesn't handle. -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- A little spot for some in-page CSS, mostly for the theme color. -->
+    <style>
+        /* This is where we set the main color for the theme. It can be changed by the color picker button. */
+        :root {
+            --theme-color: #8B5CF6; /* Starts off as a nice purple. */
+        }
+
+        /* --- GLOBAL THEME ELEMENTS --- */
+
+        /* The profile image border is handled in style.css now, so no need for a rule here. */
+
+        /* Just some basic spacing for the content sections that get loaded in. */
+        #main-content section {
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        /* This prevents a weird extra space at the bottom of the page. */
+        #main-content section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        /* Makes the navigation links change color when you hover over them. */
+        .nav-link:hover {
+            color: var(--theme-color);
+        }
+
+        /* --- BUTTONS --- */
+
+        /* Styles the color picker button in the header. */
+        #colorize {
+            background-color: var(--theme-color);
+        }
+        
+        /* A general style for all the main buttons, making sure they use the theme color. */
+        .btn,
+        button[type="submit"] {
+            background-color: var(--theme-color) !important; /* Important is needed to beat Tailwind's styles. */
+            transition: filter 0.2s ease-in-out;
+        }
+        /* A subtle glow effect when you hover over the buttons. */
+        .btn:hover,
+        button[type="submit"]:hover {
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- This is the canvas for the animated particle background. It sits behind everything. -->
+    <canvas id="portfolioCanvas" class="fixed top-0 left-0 w-full h-full z-0"></canvas>
+
+    <!-- The header bar that sticks to the top of the page. -->
+    <header class="fixed top-0 left-0 w-full p-4 z-50 bg-gray-900/50 backdrop-blur-md">
+        <div class="container mx-auto flex justify-center items-center">
+            <!-- The main navigation links. -->
+            <nav class="flex items-center space-x-4 sm:space-x-6 text-md sm:text-lg">
+                <a href="home.html" class="nav-link text-gray-300 transition-colors duration-300">Home</a>
+                <a href="projects.html" class="nav-link text-white font-bold transition-colors duration-300">Projects</a>
+                <a href="about.html" class="nav-link text-gray-300 transition-colors duration-300">About</a>
+                <a href="contact.html" class="nav-link text-gray-300 transition-colors duration-300">Contact</a>
+            </nav>
+            <!-- The fun little button that changes the site's theme color. -->
+            <button id="colorize" title="Randomize Theme Color" class="ml-6 w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition-all duration-300">
+                <i class="fas fa-paintbrush"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- This is the main content area where the different pages (home, about, etc.) will be loaded into. -->
+    <main id="main-content" class="relative z-10 p-4 pt-24"></main>
+
+    <!-- The pop-up modal for viewing images from the art gallery. It's hidden until you click an image. -->
+    <div id="imageModal" class="hidden fixed inset-0 bg-black/80 z-50 items-center justify-center">
+        <span class="lightbox-close absolute top-4 right-6 text-white text-4xl font-bold cursor-pointer">&times;</span>
+        <a class="lightbox-nav lightbox-prev absolute left-4 top-1/2 -translate-y-1/2 text-white text-3xl cursor-pointer">&#10094;</a>
+        <a class="lightbox-nav lightbox-next absolute right-4 top-1/2 -translate-y-1/2 text-white text-3xl cursor-pointer">&#10095;</a>
+        <img id="modalImage" src="" alt="Enlarged view of the selected artwork from the gallery." class="max-w-[90vw] max-h-[80vh] object-contain">
+        <div id="lightbox-caption" class="text-center text-gray-300 mt-2 text-lg"></div>
+    </div>
+
+    <!-- The main JavaScript file that runs all the interactive stuff. -->
+    <script src="main.js"></script>
+</body>
+</html>

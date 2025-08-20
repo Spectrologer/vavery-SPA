@@ -1,0 +1,108 @@
+<!-- 
+  This is the improved version of your about page.
+  It uses a more dynamic layout with Tailwind CSS and includes Font Awesome icons.
+-->
+<div class="content-container scrollable text-gray-300">
+
+    <!-- About Me Section -->
+    <!-- This section now uses a two-column layout on larger screens for a better visual balance, pairing your intro text with an image. -->
+    <section id="about-me" class="text-center md:text-left">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+            <!-- Profile Image -->
+            <img 
+                src="me.png" 
+                alt="A portrait of Vaughn Avery" 
+                class="profile-image w-48 h-48 rounded-full object-cover border-4"
+                onerror="this.onerror=null;this.src='https://placehold.co/192x192/1F2937/E5E7EB?text=VA';"
+            >
+            <!-- Introduction Text -->
+            <div class="flex-1">
+                <h2 class="text-3xl font-bold text-white mb-4">About Me</h2>
+                <p class="text-lg leading-relaxed">
+                   I'm a resourceful and adaptable designer with a passion for learning and a proven ability to master new tools and concepts quickly. My background blends design, art, and front-end development, allowing me to navigate complex challenges and deliver elegant solutions. I am committed to growing professionally and contributing my skills to a collaborative and successful team.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="my-8 border-gray-700">
+
+    <!-- Tech Skills Section -->
+    <!-- Skills are now presented with icons for quicker visual recognition and a more polished look. -->
+    <section id="skills">
+        <h2 class="text-3xl font-bold text-white mb-6 text-center">Technical Skills</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center">
+            <!-- Skill Item: Adobe Suite -->
+            <div class="bg-gray-800/50 p-4 rounded-lg flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:bg-gray-800">
+                <i class="fas fa-layer-group text-3xl" style="color: var(--theme-color);"></i>
+                <span>Adobe Suite</span>
+            </div>
+            <!-- Skill Item: Google Suite -->
+            <div class="bg-gray-800/50 p-4 rounded-lg flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:bg-gray-800">
+                <i class="fab fa-google-drive text-3xl" style="color: var(--theme-color);"></i>
+                <span>Google Suite</span>
+            </div>
+            <!-- Skill Item: Office 365 -->
+            <div class="bg-gray-800/50 p-4 rounded-lg flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:bg-gray-800">
+                <i class="fas fa-file-word text-3xl" style="color: var(--theme-color);"></i>
+                <span>Office 365</span>
+            </div>
+            <!-- Skill Item: HTML5 & CSS3 -->
+            <div class="bg-gray-800/50 p-4 rounded-lg flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:bg-gray-800">
+                <i class="fab fa-html5 text-3xl" style="color: var(--theme-color);"></i>
+                <span>HTML5 & CSS3</span>
+            </div>
+            <!-- Skill Item: Git & GitHub -->
+            <div class="bg-gray-800/50 p-4 rounded-lg flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:bg-gray-800">
+                <i class="fab fa-github text-3xl" style="color: var(--theme-color);"></i>
+                <span>Git & GitHub</span>
+            </div>
+            <!-- Skill Item: UI/UX Design -->
+            <div class="bg-gray-800/50 p-4 rounded-lg flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:bg-gray-800">
+                <i class="fas fa-object-ungroup text-3xl" style="color: var(--theme-color);"></i>
+                <span>UI/UX Design</span>
+            </div>
+            <!-- Skill Item: Figma -->
+            <div class="bg-gray-800/50 p-4 rounded-lg flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:bg-gray-800">
+                <i class="fab fa-figma text-3xl" style="color: var(--theme-color);"></i>
+                <span>Figma</span>
+            </div>
+            <!-- Skill Item: Prompt Engineering -->
+            <div class="bg-gray-800/50 p-4 rounded-lg flex flex-col items-center justify-center gap-2 transition-transform hover:scale-105 hover:bg-gray-800">
+                <i class="fas fa-terminal text-3xl" style="color: var(--theme-color);"></i>
+                <span>Prompt Engineering</span>
+            </div>
+        </div>
+    </section>
+
+    <hr class="my-8 border-gray-700">
+
+    <!-- Experience Section -->
+    <!-- The experience section is now more detailed, using professional language and a layout similar to a modern resume. -->
+    <section id="experience">
+        <h2 class="text-3xl font-bold text-white mb-6 text-center">Experience</h2>
+        <div class="space-y-8">
+            <!-- Experience Item 1 -->
+            <div class="bg-gray-800/50 p-6 rounded-lg">
+                <div class="flex justify-between items-baseline">
+                    <h3 class="text-xl font-semibold text-white">Freelance Designer & Generalist</h3>
+                    <p class="text-sm text-gray-400">2010 - Present</p>
+                </div>
+                <p class="mt-2 text-gray-300">
+                    As a self-employed design generalist, I've worked with various clients on branding, web design, and digital art projects. I'm now seeking a full-time role to apply my diverse skill set in a collaborative team environment.
+                </p>
+            </div>
+            <!-- Experience Item 2 -->
+            <div class="bg-gray-800/50 p-6 rounded-lg">
+                <div class="flex justify-between items-baseline">
+                    <h3 class="text-xl font-semibold text-white">Artisan Baker</h3>
+                    <p class="text-sm text-gray-400">2023 - Present</p>
+                </div>
+                <p class="mt-2 text-gray-300">
+                    In a high-volume  bakery, I honed my skills in precision, time management, and consistency. This role requires meticulous attention to detail and the ability to adapt quickly in a fast-paced environment. <br> Day to day, this is how I bring in the bread.
+                </p>
+            </div>
+        </div>
+    </section>
+
+</div>
