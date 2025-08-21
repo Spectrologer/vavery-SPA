@@ -1,16 +1,15 @@
-<!-- 
-  This is the improved version of your about page.
-  It uses a more dynamic layout with Tailwind CSS and includes Font Awesome icons.
--->
+
 <div class="content-container scrollable text-gray-300">
 
     <!-- About Me Section -->
-    <!-- This section now uses a two-column layout on larger screens for a better visual balance, pairing your intro text with an image. -->
+
+
+    
     <section id="about-me" class="text-center md:text-left">
         <div class="flex flex-col md:flex-row items-center gap-8">
             <!-- Profile Image -->
             <img 
-                src="me.png" 
+                src="images/me-thumb.webp" 
                 alt="A portrait of Vaughn Avery" 
                 class="profile-image w-48 h-48 rounded-full object-cover border-4"
                 onerror="this.onerror=null;this.src='https://placehold.co/192x192/1F2937/E5E7EB?text=VA';"
@@ -28,7 +27,7 @@
     <hr class="my-8 border-gray-700">
 
     <!-- Tech Skills Section -->
-    <!-- Skills are now presented with icons for quicker visual recognition and a more polished look. -->
+
     <section id="skills">
         <h2 class="text-3xl font-bold text-white mb-6 text-center">Technical Skills</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center">
@@ -73,6 +72,37 @@
                 <span>Prompt Engineering</span>
             </div>
         </div>
+
+         <section id="ux-skills" class="mt-8">
+        <h2 class="text-3xl font-bold text-white mb-6 text-center">UX Design Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-gray-800/50 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold text-white mb-3 flex items-center gap-3">
+                    <i class="fas fa-users" style="color: var(--theme-color);"></i>
+                    User Research & Testing
+                </h3>
+                <ul class="text-gray-300 space-y-2">
+                    <li>• User interviews and surveys</li>
+                    <li>• Usability testing and analysis</li>
+                    <li>• Persona development</li>
+                    <li>• User journey mapping</li>
+                </ul>
+            </div>
+            
+            <div class="bg-gray-800/50 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold text-white mb-3 flex items-center gap-3">
+                    <i class="fas fa-pencil-ruler" style="color: var(--theme-color);"></i>
+                    Design & Prototyping
+                </h3>
+                <ul class="text-gray-300 space-y-2">
+                    <li>• Wireframing and prototyping</li>
+                    <li>• Information architecture</li>
+                    <li>• Responsive web design</li>
+                    <li>• Design systems and style guides</li>
+                </ul>
+            </div>
+        </div>
+    </section>
     </section>
 
     <hr class="my-8 border-gray-700">
