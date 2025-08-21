@@ -1,14 +1,14 @@
 <!-- 
-  This is the improved version of your contact page.
-  It features a more professional layout, additional contact options with icons,
-  and enhanced styling for the form.
+  This is the corrected version of your contact page.
+  The non-functional inline <script> has been removed. Its logic is now handled 
+  by the main site script (main.js) to ensure it works when the page is loaded dynamically.
 -->
 <div class="content-container scrollable text-gray-300">
 
     <section id="contact">
         <!-- Page Header -->
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-white">Get @ Me</h1>
+            <h1 class="text-4xl font-bold text-white">Get In Touch</h1>
             <p class="text-lg mt-2 max-w-2xl mx-auto">
                 I'm currently available for freelance work and open to discussing new projects. Whether you have a question or just want to say hi, feel free to reach out.
             </p>
@@ -28,12 +28,12 @@
                         <!-- Email Input -->
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="form-input bg-gray-900/50 border-gray-700 rounded-lg w-full p-3 focus:border-[var(--theme-color)] focus:ring-[var(--theme-color)] transition" placeholder="your.email@aol.com" required>
+                            <input type="email" id="email" name="email" class="form-input bg-gray-900/50 border-gray-700 rounded-lg w-full p-3 focus:border-[var(--theme-color)] focus:ring-[var(--theme-color)] transition" placeholder="your.email@example.com" required>
                         </div>
                         <!-- Message Textarea -->
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" class="form-input bg-gray-900/50 border-gray-700 rounded-lg w-full p-3 focus:border-[var(--theme-color)] focus:ring-[var(--theme-color)] transition" placeholder="H" required></textarea>
+                            <textarea id="message" name="message" rows="5" class="form-input bg-gray-900/50 border-gray-700 rounded-lg w-full p-3 focus:border-[var(--theme-color)] focus:ring-[var(--theme-color)] transition" placeholder="Your message..." required></textarea>
                         </div>
                         <!-- Submit Button -->
                         <div>
@@ -56,11 +56,11 @@
                             <i class="fas fa-envelope text-2xl w-8 text-center" style="color: var(--theme-color);"></i>
                             <div>
                                 <h4 class="font-semibold">Email</h4>
-                                <!-- Obfuscated Email: This span will be replaced by a mailto link on click. -->
+                                <!-- This span contains the data attributes for the email reveal functionality. -->
                                 <span id="email-reveal" 
                                       class="text-gray-400 hover:text-[var(--theme-color)] transition cursor-pointer" 
-                                      data-user="your.email" 
-                                      data-domain="example.com">[Click to reveal email]</span>
+                                      data-user="vavery.ux" 
+                                      data-domain="gmail.com">[Click to reveal email]</span>
                             </div>
                         </div>
                         <!-- LinkedIn -->
@@ -68,7 +68,7 @@
                             <i class="fab fa-linkedin text-2xl w-8 text-center" style="color: var(--theme-color);"></i>
                             <div>
                                 <h4 class="font-semibold">LinkedIn</h4>
-                                <a href="www.linkedin.com/in/vaughn-a-5a6590278" target="_blank" class="text-gray-400 hover:text-[var(--theme-color)] transition">vavery.ux</a>
+                                <a href="https://www.linkedin.com/in/vaughn-a-5a6590278" target="_blank" class="text-gray-400 hover:text-[var(--theme-color)] transition">Vaughn Avery</a>
                             </div>
                         </div>
                         <!-- GitHub -->
@@ -76,7 +76,7 @@
                             <i class="fab fa-github text-2xl w-8 text-center" style="color: var(--theme-color);"></i>
                             <div>
                                 <h4 class="font-semibold">GitHub</h4>
-                                <a href="https://github.com/Spectrologer" target="_blank" class="text-gray-400 hover:text-[var(--theme-color)] transition">Hauntologist</a>
+                                <a href="https://github.com/Spectrologer" target="_blank" class="text-gray-400 hover:text-[var(--theme-color)] transition">Spectrologer</a>
                             </div>
                         </div>
                     </div>
@@ -85,34 +85,5 @@
 
         </div>
     </section>
-
-    <!-- JavaScript for email reveal functionality -->
-    <!-- This script is added to protect the email address from being scanned by bots. -->
-    <script>
-        const emailRevealElement = document.getElementById('email-reveal');
-        
-        // Check if the element exists to avoid errors if this script runs on other pages.
-        if (emailRevealElement) {
-            // The event listener is set to run only once.
-            emailRevealElement.addEventListener('click', function revealEmail() {
-                // Reconstruct the email from data attributes to hide it from simple scrapers.
-                const user = this.getAttribute('data-user');
-                const domain = this.getAttribute('data-domain');
-                const emailAddress = `${user}@${domain}`;
-                
-                // Create a clickable mailto link element.
-                const mailLink = document.createElement('a');
-                mailLink.href = `mailto:${"vavery.ux@gmail.com"}`;
-                mailLink.textContent = emailAddress;
-                
-                // Apply the same styling as the original placeholder span.
-                mailLink.className = this.className; 
-                mailLink.classList.remove('cursor-pointer'); // The link is inherently clickable, so the pointer cursor is default.
-                
-                // Replace the placeholder span with the generated mailto link.
-                this.parentNode.replaceChild(mailLink, this);
-            }, { once: true }); // The { once: true } option ensures the event listener is removed after it runs once.
-        }
-    </script>
 
 </div>
