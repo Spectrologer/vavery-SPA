@@ -46,6 +46,7 @@
         /* Styles the color picker button in the header. */
         #colorize {
             background-color: var(--theme-color);
+            position: relative;
         }
         
         /* A general style for all the main buttons, making sure they use the theme color. */
@@ -59,6 +60,52 @@
         button[type="submit"]:hover {
             filter: brightness(1.1);
         }
+
+        /* --- TOOLTIP STYLES --- */
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(17, 24, 39, 0.95);
+            color: #f3f4f6;
+            padding: 6px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            bottom: -29px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid rgba(17, 24, 39, 0.95);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 1000;
+        }
+
+        .tooltip:hover::after,
+        .tooltip:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+    
     </style>
 </head>
 <body>
@@ -75,10 +122,12 @@
                 <a href="about.html" class="nav-link text-gray-300 transition-colors duration-300">About</a>
                 <a href="contact.html" class="nav-link text-gray-300 transition-colors duration-300">Contact</a>
             </nav>
-            <!-- The fun little button that changes the site's theme color. -->
-            <button id="colorize" title="Randomize Theme Color" class="ml-6 w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition-all duration-300">
+       
+           
+            <button id="colorize" class="tooltip ml-6 w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition-all duration-300" data-tooltip="Randomly change theme color">
                 <i class="fas fa-paintbrush"></i>
             </button>
+   
         </div>
     </header>
 
@@ -95,7 +144,6 @@
     </div>
 
     <!-- The main JavaScript file that runs all the interactive stuff. -->
-       <main id="main-content" class="relative z-10 p-4 pt-24"></main>
     <script src="main.js"></script>
 </body>
 </html>

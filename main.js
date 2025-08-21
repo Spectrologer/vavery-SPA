@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Canvas Animation Setup ---
+    
     const canvas = document.getElementById('portfolioCanvas');
     if (!canvas) {
         console.error("Canvas element not found!");
@@ -95,6 +96,134 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.style.setProperty('--theme-color', newColors.themeColor);
     });
 
+    // --- Lightbox Functionality ---
+    let currentImageIndex = 0;
+    let galleryImages = [];
+
+    function initializeLightbox() {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const caption = document.getElementById('lightbox-caption');
+        const closeBtn = document.querySelector('.lightbox-close');
+        const prevBtn = document.querySelector('.lightbox-prev');
+        const nextBtn = document.querySelector('.lightbox-next');
+        
+        // Re-query gallery images each time content is loaded
+        galleryImages = Array.from(document.querySelectorAll('.gallery-image'));
+
+        function openModal(index) {
+            currentImageIndex = index;
+            const img = galleryImages[currentImageIndex];
+            const imgSrc = img.src;
+            const imgCaption = img.getAttribute('data-caption') || '';
+
+            modalImage.src = imgSrc;
+            modalImage.alt = img.alt;
+            caption.textContent = imgCaption;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            setTimeout(() => {
+                modal.classList.add('visible');
+            }, 10);
+
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('visible');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }, 400);
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateModalImage();
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateModalImage();
+        }
+
+        function updateModalImage() {
+            const img = galleryImages[currentImageIndex];
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            caption.textContent = img.getAttribute('data-caption') || '';
+        }
+
+        // Add click event listeners to all gallery images
+        galleryImages.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                openModal(index);
+            });
+        });
+
+        // Close modal when clicking the close button
+        if (closeBtn) {
+            closeBtn.removeEventListener('click', closeModal); // Remove old listener
+            closeBtn.addEventListener('click', closeModal);
+        }
+
+        // Navigate to next image
+        if (nextBtn) {
+            nextBtn.removeEventListener('click', showNextImage); // Remove old listener
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showNextImage();
+            });
+        }
+
+        // Navigate to previous image
+        if (prevBtn) {
+            prevBtn.removeEventListener('click', showPrevImage); // Remove old listener
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showPrevImage();
+            });
+        }
+
+        // Close modal when clicking outside the image
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        }
+
+        // Prevent modal image from closing the modal when clicked
+        if (modalImage) {
+            modalImage.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+    }
+
+    // Keyboard navigation (global listener)
+    document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById('imageModal');
+        if (!modal || modal.classList.contains('hidden')) return;
+
+        switch(e.key) {
+            case 'Escape':
+                modal.querySelector('.lightbox-close').click();
+                break;
+            case 'ArrowRight':
+                modal.querySelector('.lightbox-next').click();
+                break;
+            case 'ArrowLeft':
+                modal.querySelector('.lightbox-prev').click();
+                break;
+        }
+    });
+
     // --- Dynamic Page Content Loading ---
     const mainContent = document.getElementById('main-content');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -111,48 +240,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.text();
             mainContent.innerHTML = data;
             mainContent.style.opacity = '1';
+
+            // Initialize lightbox after content is loaded
+            if (url === 'projects.html') {
+                setTimeout(initializeLightbox, 100);
+            }
         } catch (error) {
             mainContent.innerHTML = `<p class="text-center text-red-400">Error loading content: ${error.message}</p>`;
             mainContent.style.opacity = '1';
         }
-
-        mainContent.addEventListener('click', (event) => {
-    // Find the closest ancestor that is the button, or the element itself
-    const viewWorkButton = event.target.closest('#view-work-btn');
-
-    // Logic for the email reveal
-    if (event.target && event.target.id === 'email-reveal') {
-        // ... (your existing email reveal code)
-    } 
-
-    // NEW: Logic for the "View My Work" button
-    else if (viewWorkButton) {
-        event.preventDefault(); // Stop the link's default # behavior
-        // Find the main projects nav link in the header and simulate a click on it
-        document.querySelector('header .nav-link[href="projects.html"]').click();
-    }
-
-    mainContent.addEventListener('click', (event) => {
-    const viewWorkButton = event.target.closest('#view-work-btn');
-    const getInTouchButton = event.target.closest('#get-in-touch-btn'); // Add this line
-
-    if (event.target && event.target.id === 'email-reveal') {
-        // ... (existing email reveal code)
-    } 
-    else if (viewWorkButton) {
-        event.preventDefault(); 
-        document.querySelector('header .nav-link[href="projects.html"]').click();
-    }
-    // NEW: Logic for the "Get In Touch" button
-    else if (getInTouchButton) {
-        event.preventDefault(); // Stop the link's default # behavior
-        // Find the main contact nav link and simulate a click
-        document.querySelector('header .nav-link[href="contact.html"]').click();
-    }
-});
-});
-
-        
     };
 
     navLinks.forEach(link => {
@@ -190,15 +286,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     loadInitialPage();
 
-    // --- NEW: Event Listener for Dynamically Loaded Content ---
-    // This listens for clicks on the main content area. If the clicked
-    // element is the email reveal span, it runs the reveal logic.
+    // --- Event Listener for Dynamically Loaded Content ---
     mainContent.addEventListener('click', (event) => {
-        // Check if the clicked element is the one we're looking for
+        // Email reveal functionality
         if (event.target && event.target.id === 'email-reveal') {
             const emailSpan = event.target;
             
-            // Prevent this from running more than once
             if (emailSpan.getAttribute('data-revealed')) {
                 return;
             }
@@ -211,13 +304,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const mailLink = document.createElement('a');
             mailLink.href = `mailto:${emailAddress}`;
             mailLink.textContent = emailAddress;
-            
-            // Copy styling from the original span
             mailLink.className = emailSpan.className; 
             mailLink.classList.remove('cursor-pointer');
             
-            // Replace the span with the new clickable link
             emailSpan.parentNode.replaceChild(mailLink, emailSpan);
+        }
+
+        // "View My Work" button functionality
+        const viewWorkButton = event.target.closest('#view-work-btn');
+        if (viewWorkButton) {
+            event.preventDefault();
+            document.querySelector('header .nav-link[href="projects.html"]').click();
+        }
+
+        // "Get In Touch" button functionality
+        const getInTouchButton = event.target.closest('#get-in-touch-btn');
+        if (getInTouchButton) {
+            event.preventDefault();
+            document.querySelector('header .nav-link[href="contact.html"]').click();
         }
     });
 });
