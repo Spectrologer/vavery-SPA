@@ -115,6 +115,44 @@ document.addEventListener('DOMContentLoaded', () => {
             mainContent.innerHTML = `<p class="text-center text-red-400">Error loading content: ${error.message}</p>`;
             mainContent.style.opacity = '1';
         }
+
+        mainContent.addEventListener('click', (event) => {
+    // Find the closest ancestor that is the button, or the element itself
+    const viewWorkButton = event.target.closest('#view-work-btn');
+
+    // Logic for the email reveal
+    if (event.target && event.target.id === 'email-reveal') {
+        // ... (your existing email reveal code)
+    } 
+
+    // NEW: Logic for the "View My Work" button
+    else if (viewWorkButton) {
+        event.preventDefault(); // Stop the link's default # behavior
+        // Find the main projects nav link in the header and simulate a click on it
+        document.querySelector('header .nav-link[href="projects.html"]').click();
+    }
+
+    mainContent.addEventListener('click', (event) => {
+    const viewWorkButton = event.target.closest('#view-work-btn');
+    const getInTouchButton = event.target.closest('#get-in-touch-btn'); // Add this line
+
+    if (event.target && event.target.id === 'email-reveal') {
+        // ... (existing email reveal code)
+    } 
+    else if (viewWorkButton) {
+        event.preventDefault(); 
+        document.querySelector('header .nav-link[href="projects.html"]').click();
+    }
+    // NEW: Logic for the "Get In Touch" button
+    else if (getInTouchButton) {
+        event.preventDefault(); // Stop the link's default # behavior
+        // Find the main contact nav link and simulate a click
+        document.querySelector('header .nav-link[href="contact.html"]').click();
+    }
+});
+});
+
+        
     };
 
     navLinks.forEach(link => {

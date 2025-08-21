@@ -12,6 +12,13 @@ body, html {
     background-color: #000000;
 }
 
+/* Fix for long links like emails overflowing their container */
+a[href^="mailto:"],
+span[data-domain] {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
 /* This is for the animated particle background. Makes it stick to the back and fill the screen. */
 #portfolioCanvas {
     position: fixed;
