@@ -546,6 +546,46 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // --- Site Info Popover ---
+    const infoIcon = document.getElementById('info-icon');
+    const infoPanel = document.getElementById('info-panel');
+    let infoPanelTimeout; // Variable to hold the timer
+
+    if (infoIcon && infoPanel) {
+        const hidePanel = () => {
+            infoPanel.classList.remove('opacity-100', 'translate-y-0');
+            infoPanel.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+            clearTimeout(infoPanelTimeout); // Clear any existing timer
+        };
+
+        const showPanel = () => {
+            infoPanel.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+            infoPanel.classList.add('opacity-100', 'translate-y-0');
+            // Set a timer to hide the panel after 5 seconds (5000 milliseconds)
+            infoPanelTimeout = setTimeout(hidePanel, 5000);
+        };
+
+        infoIcon.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent click from bubbling up to the document
+            const isVisible = infoPanel.classList.contains('opacity-100');
+            if (isVisible) {
+                hidePanel();
+            } else {
+                showPanel();
+            }
+        });
+
+        // Close popover when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!infoPanel.contains(event.target) && !infoIcon.contains(event.target)) {
+                // Only hide if it's currently visible
+                if (infoPanel.classList.contains('opacity-100')) {
+                    hidePanel();
+                }
+            }
+        });
+    }
 });
 
 // --- Mobile Navigation Enhancements ---

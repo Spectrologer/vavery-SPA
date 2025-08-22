@@ -66,6 +66,20 @@
         <div id="lightbox-caption" class="text-center text-gray-300 mt-2 text-lg"></div>
     </div>
 
+    <!-- Info Icon and Popover -->
+    <div id="info-container" class="fixed bottom-4 right-4 z-50">
+        <!-- Panel is positioned relative to this container -->
+        <div id="info-panel" class="absolute bottom-full mb-2 right-0 w-64 bg-gray-800/80 backdrop-blur-md text-gray-300 text-sm p-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform translate-y-2 opacity-0 pointer-events-none">
+            <h4 class="font-bold text-white mb-2">About This Site</h4>
+            <p><strong>Author:</strong> Vaughn Avery</p>
+            <p><strong>Built with:</strong> HTML, Tailwind CSS, and vanilla JavaScript. AI tools were used to assist in the development process.</p>
+            <p class="mt-2 text-xs text-gray-400">The background canvas animation is performance-optimized for most devices.</p>
+        </div>
+        <button id="info-icon" title="Site Info" class="w-12 h-12 rounded-full flex items-center justify-center bg-gray-700 text-white shadow-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition-transform duration-200 hover:scale-110">
+            <i class="fas fa-info-circle text-xl"></i>
+        </button>
+    </div>
+
     <script src="main.js"></script>
 </body>
 </html>
