@@ -2,43 +2,224 @@
     
     <!-- The header for my design work -->
     <h1 class="text-4xl sm:text-5xl">Design</h1>
-<p class="text-gray-400 mb-12 max-w-2xl text-center mx-auto">Here's some of the stuff I've worked on.</p>
+    <p class="text-gray-400 mb-12 max-w-2xl text-center mx-auto">Here's some of the stuff I've worked on.</p>
+    
     <!-- A grid to hold all the project cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+    <div class="space-y-12 w-full">
         
         <!-- Project: Ochlo -->
-        <div class="project-card">
-            <img src="images/ochlo.png" alt="A screenshot of the Ochlo application interface.">
-            <div class="card-content">
-                <h3>Ochlo</h3>
-                <p>Approaching the challenge of creating a secure, decentralized communication tool, I designed Ochlo. This project focused on user privacy and ease of use, allowing for the instant creation of encrypted WLAN events without requiring user accounts.</p>
-                <a href="https://www.behance.net/vavery" target="_blank" class="btn mt-4 inline-block rounded-lg py-2 px-4 font-bold text-white">
-                    <span>View Case Study</span>
-                </a>
+        <div class="project-showcase bg-gray-800/30 rounded-xl p-6 border border-gray-700/50">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="project-image-container flex justify-center">
+                    <img src="images/ochlo.png" alt="A screenshot of the Ochlo application interface." class="w-full h-auto rounded-lg shadow-lg object-contain max-w-64">
+                </div>
+                <div class="project-info">
+                    <div class="flex items-center gap-4 mb-4">
+                        <h3 id="ochlo-title" class="text-2xl font-bold text-white">Ochlo</h3>
+                        <span class="px-3 py-1 bg-purple-600/20 text-purple-300 text-sm rounded-full">UX Design</span>
+                        <span class="px-3 py-1 bg-blue-600/20 text-blue-300 text-sm rounded-full">Security</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">Approaching the challenge of creating a secure, decentralized communication tool, I designed Ochlo. This project focused on user privacy and ease of use, allowing for the instant creation of encrypted WLAN events without requiring user accounts.</p>
+                    
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-900/50 rounded-lg">
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">2 weeks</div>
+                            <div class="text-sm text-gray-400">Timeline</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">Solo</div>
+                            <div class="text-sm text-gray-400">Team Size</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">Mobile</div>
+                            <div class="text-sm text-gray-400">Platform</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button class="case-study-toggle btn bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg font-semibold text-white transition-all" data-project="ochlo" aria-expanded="false" aria-controls="ochlo-case-study">
+                            <i class="fas fa-chevron-down mr-2 transition-transform"></i>
+                            View Case Study
+                        </button>
+                        <a href="https://www.behance.net/vavery" target="_blank" class="btn bg-gray-600 hover:bg-gray-700 px-6 py-3 rounded-lg font-semibold text-white text-center transition-all">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            View on Behance
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Expandable Case Study Content -->
+            <div class="case-study-content mt-8 border-t border-gray-700/50 pt-8" id="ochlo-case-study" aria-labelledby="ochlo-title" aria-hidden="true">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-semibold text-white mb-4">Problem Statement</h4>
+                        <p class="text-gray-300 mb-6">Current communication tools require account creation and centralized servers, creating privacy concerns and barriers to quick, secure communication in sensitive situations.</p>
+                        
+                        <h4 class="text-xl font-semibold text-white mb-4">Key Challenges</h4>
+                        <ul class="text-gray-300 space-y-2 mb-6">
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-purple-400 mt-2 mr-3 text-xs"></i>Balancing security with ease of use</li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-purple-400 mt-2 mr-3 text-xs"></i>Creating intuitive onboarding without accounts</li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-purple-400 mt-2 mr-3 text-xs"></i>Designing for various technical skill levels</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-white mb-4">Solution Approach</h4>
+                        <p class="text-gray-300 mb-6">I designed a streamlined interface that generates secure communication channels instantly, using visual metaphors that make complex security concepts accessible to all users.</p>
+                        
+                        <h4 class="text-xl font-semibold text-white mb-4">Key Features</h4>
+                        <ul class="text-gray-300 space-y-2">
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>One-tap event creation</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Visual encryption status indicators</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Progressive disclosure of advanced features</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Project: Eugene Access -->
-        <div class="project-card">
-            <img src="images/access.png" alt="A screenshot of the Eugene Access application.">
-            <div class="card-content">
-                <h3>Eugene Access</h3>
-                <p>As a one-day personal design challenge, I created Eugene Access to solve a key usability problem: quickly finding essential human services. The focus was on a simple, single-screen interface for maximum accessibility and efficiency.</p>
-                <a href="https://www.behance.net/vavery" target="_blank" class="btn mt-4 inline-block rounded-lg py-2 px-4 font-bold text-white">
-                    <span>View Case Study</span>
-                </a>
+        <div class="project-showcase bg-gray-800/30 rounded-xl p-6 border border-gray-700/50">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="project-image-container flex justify-center">
+                    <img src="images/access.png" alt="A screenshot of the Eugene Access application." class="w-full h-auto rounded-lg shadow-lg object-contain max-w-64">
+                </div>
+                <div class="project-info">
+                    <div class="flex items-center gap-4 mb-4">
+                        <h3 id="eugene-title" class="text-2xl font-bold text-white">Eugene Access</h3>
+                        <span class="px-3 py-1 bg-green-600/20 text-green-300 text-sm rounded-full">Public Service</span>
+                        <span class="px-3 py-1 bg-yellow-600/20 text-yellow-300 text-sm rounded-full">Accessibility</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">As a one-day personal design challenge, I created Eugene Access to solve a key usability problem: quickly finding essential human services. The focus was on a simple, single-screen interface for maximum accessibility and efficiency.</p>
+                    
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-900/50 rounded-lg">
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">1 day</div>
+                            <div class="text-sm text-gray-400">Timeline</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">Solo</div>
+                            <div class="text-sm text-gray-400">Team Size</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">Web</div>
+                            <div class="text-sm text-gray-400">Platform</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button class="case-study-toggle btn bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-semibold text-white transition-all" data-project="eugene" aria-expanded="false" aria-controls="eugene-case-study">
+                            <i class="fas fa-chevron-down mr-2 transition-transform"></i>
+                            View Case Study
+                        </button>
+                        <a href="https://www.behance.net/vavery" target="_blank" class="btn bg-gray-600 hover:bg-gray-700 px-6 py-3 rounded-lg font-semibold text-white text-center transition-all">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            View on Behance
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Expandable Case Study Content -->
+            <div class="case-study-content mt-8 border-t border-gray-700/50 pt-8" id="eugene-case-study" aria-labelledby="eugene-title" aria-hidden="true">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-semibold text-white mb-4">Problem Statement</h4>
+                        <p class="text-gray-300 mb-6">People in crisis situations struggle to quickly find essential services due to fragmented information sources and complex navigation systems in existing platforms.</p>
+                        
+                        <h4 class="text-xl font-semibold text-white mb-4">Design Constraints</h4>
+                        <ul class="text-gray-300 space-y-2 mb-6">
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-green-400 mt-2 mr-3 text-xs"></i>24-hour design challenge</li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-green-400 mt-2 mr-3 text-xs"></i>Single-screen interface requirement</li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-green-400 mt-2 mr-3 text-xs"></i>Accessibility-first approach</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-white mb-4">Design Philosophy</h4>
+                        <p class="text-gray-300 mb-6">Prioritized clarity and speed over visual complexity. Every element serves the core purpose: connecting people to help as quickly as possible.</p>
+                        
+                        <h4 class="text-xl font-semibold text-white mb-4">Key Decisions</h4>
+                        <ul class="text-gray-300 space-y-2">
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Large, high-contrast buttons</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Icon + text labeling system</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Emergency services prominently featured</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Project: Cash Cache -->
-        <div class="project-card">
-            <img src="images/coim.png" alt="A screenshot of the Cash Cache income visualizer application.">
-            <div class="card-content">
-                <h3>Cash Cache</h3>
-                <p>The goal for Cash Cache was to make personal finance more engaging. I designed this income visualizer to provide clear, graphical representations of finances, turning a mundane task into a more interactive and satisfying experience.</p>
-                <a href="https://www.behance.net/vavery" target="_blank" class="btn mt-4 inline-block rounded-lg py-2 px-4 font-bold text-white">
-                    <span>View Case Study</span>
-                </a>
+        <div class="project-showcase bg-gray-800/30 rounded-xl p-6 border border-gray-700/50">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="project-image-container flex justify-center">
+                    <img src="images/coim.png" alt="A screenshot of the Cash Cache income visualizer application." class="w-full h-auto rounded-lg shadow-lg object-contain max-w-64">
+                </div>
+                <div class="project-info">
+                    <div class="flex items-center gap-4 mb-4">
+                        <h3 id="cashcache-title" class="text-2xl font-bold text-white">Cash Cache</h3>
+                        <span class="px-3 py-1 bg-blue-600/20 text-blue-300 text-sm rounded-full">FinTech</span>
+                        <span class="px-3 py-1 bg-orange-600/20 text-orange-300 text-sm rounded-full">Data Viz</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">The goal for Cash Cache was to make personal finance more engaging. I designed this income visualizer to provide clear, graphical representations of finances, turning a mundane task into a more interactive and satisfying experience.</p>
+                    
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-900/50 rounded-lg">
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">3 weeks</div>
+                            <div class="text-sm text-gray-400">Timeline</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">Solo</div>
+                            <div class="text-sm text-gray-400">Team Size</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">Mobile</div>
+                            <div class="text-sm text-gray-400">Platform</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button class="case-study-toggle btn bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold text-white transition-all" data-project="cashcache" aria-expanded="false" aria-controls="cashcache-case-study">
+                            <i class="fas fa-chevron-down mr-2 transition-transform"></i>
+                            View Case Study
+                        </button>
+                        <a href="https://www.behance.net/vavery" target="_blank" class="btn bg-gray-600 hover:bg-gray-700 px-6 py-3 rounded-lg font-semibold text-white text-center transition-all">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            View on Behance
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Expandable Case Study Content -->
+            <div class="case-study-content mt-8 border-t border-gray-700/50 pt-8" id="cashcache-case-study" aria-labelledby="cashcache-title" aria-hidden="true">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-semibold text-white mb-4">Problem Statement</h4>
+                        <p class="text-gray-300 mb-6">Traditional financial apps present data in boring, text-heavy formats that fail to engage users or provide meaningful insights into spending patterns.</p>
+                        
+                        <h4 class="text-xl font-semibold text-white mb-4">Research Insights</h4>
+                        <ul class="text-gray-300 space-y-2 mb-6">
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-blue-400 mt-2 mr-3 text-xs"></i>Users avoid checking financial apps</li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-blue-400 mt-2 mr-3 text-xs"></i>Visual data is processed 60x faster than text</li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-blue-400 mt-2 mr-3 text-xs"></i>Gamification increases engagement</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-white mb-4">Visual Strategy</h4>
+                        <p class="text-gray-300 mb-6">Created an engaging visual language using progressive data visualization that reveals insights gradually, making complex financial data approachable and actionable.</p>
+                        
+                        <h4 class="text-xl font-semibold text-white mb-4">Impact Goals</h4>
+                        <ul class="text-gray-300 space-y-2">
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Increase user engagement with finances</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Make budgeting feel rewarding</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Simplify complex financial concepts</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -64,3 +245,91 @@
         </div>
     </div>
 </div>
+
+<style>
+/* Additional styles for the enhanced projects page */
+.project-showcase {
+    transition: all 0.3s ease;
+}
+
+.project-showcase:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.case-study-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.case-study-toggle.expanded i {
+    transform: rotate(180deg);
+}
+
+.case-study-content {
+    /* Updated for smoother transition */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.case-study-content.expanded {
+    max-height: 1000px;
+    opacity: 1;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.project-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    border-radius: 0.5rem;
+}
+
+.project-showcase:hover .project-image-container::before {
+    opacity: 1;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .project-showcase {
+        padding: 1rem;
+    }
+    
+    .project-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .flex.flex-col.sm\\:flex-row {
+        flex-direction: column;
+    }
+    
+    .grid.grid-cols-3 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+</style>

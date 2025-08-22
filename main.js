@@ -372,6 +372,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+    
+    // NEW FUNCTION TO INITIALIZE PROJECTS PAGE JS
+    function initializeProjectsPage() {
+        // No need to add event listeners here. Event delegation is now used.
+        
+        // Also initialize lightbox since it's on the projects page
+        initializeLightbox();
+    }
+
 
     // Keyboard navigation (global listener)
     document.addEventListener('keydown', (e) => {
@@ -410,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Initialize appropriate functionality based on loaded page
             if (url === 'projects.html') {
-                setTimeout(initializeLightbox, 100);
+                initializeProjectsPage();
             } else if (url === 'contact.html') {
                 // Initialize bot checker when contact page is loaded
                 setTimeout(initializeBotChecker, 100);
@@ -508,6 +517,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+
+    
     // --- Mobile Navigation Enhancements ---
     
     // Add haptic feedback on mobile devices (if supported)
@@ -569,6 +580,29 @@ document.addEventListener('DOMContentLoaded', () => {
             
             emailSpan.parentNode.replaceChild(mailLink, emailSpan);
         }
+        
+        // Check for case study toggle clicks using event delegation
+        const toggleButton = event.target.closest('.case-study-toggle');
+        if (toggleButton) {
+            const projectId = toggleButton.getAttribute('data-project');
+            const caseStudyContent = document.getElementById(projectId + '-case-study');
+            const buttonText = toggleButton.querySelector('.btn-text') || toggleButton;
+
+            const isExpanded = caseStudyContent.classList.toggle('expanded');
+            toggleButton.classList.toggle('expanded');
+
+            if (isExpanded) {
+                buttonText.textContent = buttonText.textContent.replace('View Case Study', 'Hide Case Study');
+                setTimeout(() => {
+                    caseStudyContent.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+                }, 400);
+            } else {
+                buttonText.textContent = buttonText.textContent.replace('Hide Case Study', 'View Case Study');
+            }
+        }
 
         // "View My Work" button functionality
         const viewWorkButton = event.target.closest('#view-work-btn');
@@ -603,6 +637,12 @@ document.addEventListener('DOMContentLoaded', () => {
         mutations.forEach((mutation) => {
             if (mutation.type === 'childList') {
                 const contactForm = document.getElementById('contact-form');
+                const projectsPageLoaded = document.querySelector('.project-showcase');
+                
+                if (projectsPageLoaded) {
+                     initializeProjectsPage();
+                }
+
                 if (contactForm && !contactForm.getAttribute('data-bot-checker-initialized')) {
                     initializeBotChecker();
                     contactForm.setAttribute('data-bot-checker-initialized', 'true');
@@ -653,7 +693,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize on first load
     enhanceMobileInteractions();
 
-    // Add smooth scroll for anchor links (if you add any)
+    // Add smooth scroll for anchor links 
     document.addEventListener('click', (e) => {
         if (e.target.matches('a[href^="#"]')) {
             e.preventDefault();
