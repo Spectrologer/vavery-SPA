@@ -550,20 +550,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Site Info Popover ---
     const infoIcon = document.getElementById('info-icon');
     const infoPanel = document.getElementById('info-panel');
-    let infoPanelTimeout; // Variable to hold the timer
 
     if (infoIcon && infoPanel) {
         const hidePanel = () => {
             infoPanel.classList.remove('opacity-100', 'translate-y-0');
             infoPanel.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
-            clearTimeout(infoPanelTimeout); // Clear any existing timer
         };
 
         const showPanel = () => {
             infoPanel.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
             infoPanel.classList.add('opacity-100', 'translate-y-0');
-            // Set a timer to hide the panel after 5 seconds (5000 milliseconds)
-            infoPanelTimeout = setTimeout(hidePanel, 5000);
         };
 
         infoIcon.addEventListener('click', (event) => {
