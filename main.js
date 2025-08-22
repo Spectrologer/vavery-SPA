@@ -41,6 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Bot Checker Initialization (moved to top for global access) ---
+    const initializeBotChecker = () => {
+        const butlerian = document.getElementById('butlerian');
+        if (butlerian) {
+            butlerian.value = '2';
+        }
+    };
+
 // --- Mobile-Optimized Canvas Animation Setup ---
     
     const canvas = document.getElementById('portfolioCanvas');
@@ -400,10 +408,17 @@ document.addEventListener('DOMContentLoaded', () => {
             mainContent.innerHTML = data;
             mainContent.style.opacity = '1';
 
-            // Initialize lightbox after content is loaded
+            // Initialize appropriate functionality based on loaded page
             if (url === 'projects.html') {
                 setTimeout(initializeLightbox, 100);
+            } else if (url === 'contact.html') {
+                // Initialize bot checker when contact page is loaded
+                setTimeout(initializeBotChecker, 100);
             }
+            
+            // Always enhance mobile interactions after content loads
+            enhanceMobileInteractions();
+            
         } catch (error) {
             mainContent.innerHTML = `<p class="text-center text-red-400">Error loading content: ${error.message}</p>`;
             mainContent.style.opacity = '1';
@@ -455,14 +470,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const successMessage = document.getElementById('success-message');
             const errorMessage = document.getElementById('error-message');
             
-        // --- NEW: beep boop check ---
-            const butlerian = document.getElementById('butlerian');
-            if (!butlerian || butlerian.value !== '2') {
-                console.log("beep boop submission detected and blocked.");
-                // Fail silently to not alert the beep boop
-                return; 
-            }
-
             // Hide any existing messages
             successMessage.classList.add('hidden');
             errorMessage.classList.add('hidden');
@@ -500,6 +507,42 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+    
+    // --- Mobile Navigation Enhancements ---
+    
+    // Add haptic feedback on mobile devices (if supported)
+    function addHapticFeedback() {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(10); // Very subtle vibration
+        }
+    }
+
+    // Improve button interactions for mobile
+    function enhanceMobileInteractions() {
+        const buttons = document.querySelectorAll('.btn, button');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        // Add touch feedback to buttons
+        buttons.forEach(button => {
+            button.addEventListener('touchstart', () => {
+                button.style.transform = 'scale(0.98)';
+                addHapticFeedback();
+            }, { passive: true });
+            
+            button.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    button.style.transform = '';
+                }, 100);
+            }, { passive: true });
+        });
+        
+        // Add touch feedback to navigation
+        navLinks.forEach(link => {
+            link.addEventListener('touchstart', () => {
+                addHapticFeedback();
+            }, { passive: true });
+        });
+    }
     
     loadInitialPage();
 
@@ -555,6 +598,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Check for bot checker on any page load (including direct navigation)
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList') {
+                const contactForm = document.getElementById('contact-form');
+                if (contactForm && !contactForm.getAttribute('data-bot-checker-initialized')) {
+                    initializeBotChecker();
+                    contactForm.setAttribute('data-bot-checker-initialized', 'true');
+                }
+            }
+        });
+    });
+    
+    // Start observing the main content for changes
+    observer.observe(mainContent, { childList: true, subtree: true });
+
     // --- Site Info Popover ---
     const infoIcon = document.getElementById('info-icon');
     const infoPanel = document.getElementById('info-panel');
@@ -590,50 +649,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
-
-// --- Mobile Navigation Enhancements ---
-    
-    // Add haptic feedback on mobile devices (if supported)
-    function addHapticFeedback() {
-        if ('vibrate' in navigator) {
-            navigator.vibrate(10); // Very subtle vibration
-        }
-    }
-
-    // Improve button interactions for mobile
-    function enhanceMobileInteractions() {
-        const buttons = document.querySelectorAll('.btn, button');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        // Add touch feedback to buttons
-        buttons.forEach(button => {
-            button.addEventListener('touchstart', () => {
-                button.style.transform = 'scale(0.98)';
-                addHapticFeedback();
-            }, { passive: true });
-            
-            button.addEventListener('touchend', () => {
-                setTimeout(() => {
-                    button.style.transform = '';
-                }, 100);
-            }, { passive: true });
-        });
-        
-        // Add touch feedback to navigation
-        navLinks.forEach(link => {
-            link.addEventListener('touchstart', () => {
-                addHapticFeedback();
-            }, { passive: true });
-        });
-    }
-
-    // Call this after content loads
-    const originalLoadContent = loadContent;
-    loadContent = async (url) => {
-        await originalLoadContent(url);
-        enhanceMobileInteractions();
-    };
 
     // Initialize on first load
     enhanceMobileInteractions();
@@ -665,3 +680,4 @@ document.addEventListener('DOMContentLoaded', () => {
             ticking = true;
         }
     }, { passive: true });
+});
