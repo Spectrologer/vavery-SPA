@@ -455,6 +455,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const successMessage = document.getElementById('success-message');
             const errorMessage = document.getElementById('error-message');
             
+        // --- NEW: beep boop check ---
+            const butlerian = document.getElementById('butlerian');
+            if (!butlerian || butlerian.value !== '2') {
+                console.log("beep boop submission detected and blocked.");
+                // Fail silently to not alert the beep boop
+                return; 
+            }
+
             // Hide any existing messages
             successMessage.classList.add('hidden');
             errorMessage.classList.add('hidden');
