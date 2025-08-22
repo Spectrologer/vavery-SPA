@@ -526,6 +526,19 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             document.querySelector('header .nav-link[href="contact.html"]').click();
         }
+
+        // Profile image easter egg
+        const profileImage = event.target.closest('.profile-image');
+        if (profileImage) {
+            let clickCount = parseInt(profileImage.getAttribute('data-click-count') || '0');
+            clickCount++;
+            profileImage.setAttribute('data-click-count', clickCount);
+
+            if (clickCount >= 2) {
+                profileImage.classList.add('falling');
+                
+            }
+        }
     });
 });
 
