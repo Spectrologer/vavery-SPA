@@ -1,7 +1,7 @@
 /* --- FONTS & BASIC SETUP --- */
 
 /* Pulling in the 'Inter' font from Google for a clean, modern look. */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;7_00&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 /* A basic reset for the whole page. */
 body, html {
@@ -10,6 +10,7 @@ body, html {
     font-family: 'Inter', sans-serif;
     background-color: #000000;
     color: #d1d5db; /* A nice light gray for default text */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* This makes sure long text like emails doesn't break the layout. */
@@ -83,7 +84,7 @@ p {
 }
 
 /* My profile picture. */
-.profile-image {
+#me-thumb-webp { /* Targeting the specific ID */
     border: 4px solid var(--theme-color);
     cursor: pointer; /* Indicate it's clickable */
 }
@@ -155,8 +156,26 @@ p {
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+#modalImage-container {
+    position: relative;
+}
+
 #modalImage {
     transition: transform 0.3s ease;
+    border-radius: 0.5rem;
+}
+
+#lightbox-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
 
 #imageModal.flex #modalImage {
@@ -219,6 +238,68 @@ p {
     }
 }
 
-.profile-image.falling {
+#me-thumb-webp.falling { /* Targeting the specific ID */
     animation: fall-off-screen 1.5s ease-in forwards;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+
+@media (max-width: 768px) {
+    header nav {
+        /* Adjust spacing for smaller screens */
+        gap: 0.75rem;
+    }
+
+    .nav-link {
+        font-size: 0.875rem; /* Smaller font for nav links */
+        padding: 0.5rem;
+    }
+
+    #main-content {
+        padding-top: 5rem; /* More space below fixed header */
+    }
+
+    .content-container {
+        width: 95%;
+        margin: 2rem auto;
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    /* Ensure project cards stack nicely */
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-link {
+        font-size: 0.75rem;
+        padding: 0.4rem;
+    }
+
+    #colorize {
+        width: 2rem;
+        height: 2rem;
+        margin-left: 0.5rem;
+    }
+
+    #colorize .fas {
+        font-size: 0.8rem;
+    }
 }
