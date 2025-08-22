@@ -206,10 +206,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     colorizeButton.addEventListener('click', () => {
-        const newColors = getRandomCorrespondingColors();
-        pointColor = newColors.starColor;
-        document.documentElement.style.setProperty('--theme-color', newColors.themeColor);
-    });
+    // This line starts the animation
+    colorizeButton.classList.add('spinning');
+
+    const newColors = getRandomCorrespondingColors();
+    pointColor = newColors.starColor;
+    document.documentElement.style.setProperty('--theme-color', newColors.themeColor);
+
+    // This line removes the animation class after it's done (500ms)
+    setTimeout(() => colorizeButton.classList.remove('spinning'), 500);
+});
 
     /// --- Mobile-Enhanced Lightbox Functionality ---
     let currentImageIndex = 0;

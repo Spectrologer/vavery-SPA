@@ -28,8 +28,8 @@ a[href^="mailto:"], span[data-domain] {
     max-width: 600px;
     margin: 4rem auto;
     padding: 2.5rem;
-    background-color: rgba(17, 24, 39, 0.65); /* Increased transparency */
-    backdrop-filter: blur(4px); /* Frosted glass effect */
+    background-color: rgba(17, 24, 39, 0.25); /* Increased transparency */
+    backdrop-filter: blur(8px); /* Frosted glass effect */
     -webkit-backdrop-filter: blur(8px); /* Safari support */
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -156,6 +156,30 @@ p {
 }
 
 
+/* --- ICON HOVER EFFECTS --- */
+
+/* Style for the skill cards on the About page */
+.skill-card {
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    color: var(--theme-color);
+}
+
+/* Style for social media icons (e.g., LinkedIn, GitHub) */
+.social-icon {
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    color: var(--theme-color);
+}
+
+
 /* --- LIGHTBOX (IMAGE POP-UP) --- */
 
 #imageModal {
@@ -220,6 +244,21 @@ p {
     background-color: var(--theme-color);
 }
 
+/* --- COLORIZER ANIMATION --- */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#colorize.spinning {
+    animation: spin 0.5s ease-in-out;
+}
+
+
 .btn, button[type="submit"] {
     background-color: var(--theme-color) !important;
     transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -247,6 +286,7 @@ p {
 .profile-image.falling { /* Targeting the correct class */
     animation: fall-off-screen 1.5s ease-in forwards;
 }
+
 
 /* --- MOBILE RESPONSIVENESS --- */
 
