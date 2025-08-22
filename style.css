@@ -28,7 +28,9 @@ a[href^="mailto:"], span[data-domain] {
     max-width: 600px;
     margin: 4rem auto;
     padding: 2.5rem;
-    background-color: rgba(16, 20, 30, 0.9);
+    background-color: rgba(17, 24, 39, 0.65); /* Increased transparency */
+    backdrop-filter: blur(4px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(8px); /* Safari support */
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -94,7 +96,9 @@ p {
     display: flex;
     flex-direction: column;
     height: 100%;
-    background-color: rgba(17, 24, 39, 0.85);
+    background-color: rgba(17, 24, 39, 0.25); /* Increased transparency */
+    backdrop-filter: blur(8px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(8px); /* Safari support */
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.75rem;
     overflow: hidden;
@@ -125,7 +129,9 @@ p {
 
 /* The images in my art gallery. */
 .gallery-image-container {
-    background-color: rgba(17, 24, 39, 0.85);
+    background-color: rgba(17, 24, 39, 0.25); /* Increased transparency */
+    backdrop-filter: blur(8px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(8px); /* Safari support */
     padding: 0.5rem;
     border-radius: 0.5rem;
     transition: transform 0.3s ease;
@@ -238,7 +244,7 @@ p {
     }
 }
 
-#me-thumb-webp.falling { /* Targeting the specific ID */
+.profile-image.falling { /* Targeting the correct class */
     animation: fall-off-screen 1.5s ease-in forwards;
 }
 
