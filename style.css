@@ -144,9 +144,12 @@ body, html {
 .form-input:focus {
     outline: none;
     border-color: var(--theme-color);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--theme-color) 40%, transparent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--theme-color) 70%, transparent);
 }
 
+.form-input {
+    background-color: rgba(0, 0, 0, 0.534);
+}
 
 /* --- Layout & Containers --- */
 
