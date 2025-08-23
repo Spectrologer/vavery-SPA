@@ -19,6 +19,9 @@ body, html {
 /* Import the 'Inter' font. */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
+body, #main-content, html {
+  height: 100%;
+}
 
 /* --- Dynamic Theme & Interactivity --- */
 
