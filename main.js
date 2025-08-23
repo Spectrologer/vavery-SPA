@@ -17,6 +17,49 @@ document.addEventListener('DOMContentLoaded', () => {
     let ticking = false;
     const frameInterval = 1000 / (isMobile ? 30 : 60); // Lower FPS on mobile
     
+    // --- Accessibility Color Contrast Functions ---
+
+    /**
+     * Calculates the relative luminance of a color.
+     * @param {number} r - Red value (0-255)
+     * @param {number} g - Green value (0-255)
+     * @param {number} b - Blue value (0-255)
+     * @returns {number} The luminance value (0-1)
+     */
+    function getLuminance(r, g, b) {
+        const a = [r, g, b].map(v => {
+            v /= 255;
+            return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        });
+        return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+    }
+
+    /**
+     * Calculates the contrast ratio between two hex colors.
+     * @param {string} hex1 - The first color in hex format (e.g., "#RRGGBB")
+     * @param {string} hex2 - The second color in hex format
+     * @returns {number} The contrast ratio
+     */
+    function getContrastRatio(hex1, hex2) {
+        const r1 = parseInt(hex1.slice(1, 3), 16);
+        const g1 = parseInt(hex1.slice(3, 5), 16);
+        const b1 = parseInt(hex1.slice(5, 7), 16);
+
+        const r2 = parseInt(hex2.slice(1, 3), 16);
+        const g2 = parseInt(hex2.slice(3, 5), 16);
+        const b2 = parseInt(hex2.slice(5, 7), 16);
+
+        const lum1 = getLuminance(r1, g1, b1);
+        const lum2 = getLuminance(r2, g2, b2);
+
+        const brightest = Math.max(lum1, lum2);
+        const darkest = Math.min(lum1, lum2);
+
+        return (brightest + 0.05) / (darkest + 0.05);
+    }
+
+    // --- End Accessibility Functions ---
+    
     class Point {
         constructor() {
             this.x = Math.random() * canvas.width;
@@ -397,16 +440,35 @@ document.addEventListener('DOMContentLoaded', () => {
         isMobile = window.innerWidth < 768;
     }
 
-    // This gets random colors that go well together
-    function getRandomCorrespondingColors() {
-        const hue = Math.random() * 360;
-        const saturation = 70 + Math.random() * 30;
-        const darkLightness = 25 + Math.random() * 15;
-        const brightLightness = 75 + Math.random() * 10;
-        const themeColor = hslToHex(hue, saturation, darkLightness);
-        const starColor = hslToHex(hue, saturation, brightLightness);
+    /**
+     * Generates random, accessible theme and star colors.
+     * It ensures the theme color has a contrast ratio of at least 4.5:1 against white (for button text).
+     */
+    function getRandomAccessibleColors() {
+        const white = "#FFFFFF";
+        const WCAG_MIN_CONTRAST = 4.5;
+        let themeColor, starColor, contrastRatio;
+
+        do {
+            const hue = Math.random() * 360;
+            const saturation = 70 + Math.random() * 30;
+            
+            // Generate a theme color that is dark enough to contrast with white text
+            const themeLightness = 20 + Math.random() * 30; // Skew towards darker colors
+            themeColor = hslToHex(hue, saturation, themeLightness);
+            
+            // The star color can be brighter
+            const starLightness = 75 + Math.random() * 10;
+            starColor = hslToHex(hue, saturation, starLightness);
+            
+            // The primary check is now against white for button text readability
+            contrastRatio = getContrastRatio(themeColor, white);
+
+        } while (contrastRatio < WCAG_MIN_CONTRAST);
+
         return { themeColor, starColor };
     }
+
 
     function updatePageMeta(page) {
         const config = pageConfig[page];
@@ -438,7 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorizeButton = document.getElementById('colorize');
     colorizeButton.addEventListener('click', () => {
         colorizeButton.classList.add('spinning');
-        const newColors = getRandomCorrespondingColors();
+        const newColors = getRandomAccessibleColors(); // Use the new accessible function
         pointColor = newColors.starColor;
         document.documentElement.style.setProperty('--theme-color', newColors.themeColor);
         setTimeout(() => colorizeButton.classList.remove('spinning'), 500);
