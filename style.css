@@ -16,15 +16,15 @@ body, html {
     overflow-x: hidden;
 }
 
-/* The @import rule for fonts has been moved to index.html for better performance */
-
 body, #main-content, html {
   height: 100%;
 }
 
-/* --- NEW: Style for page content transitions --- */
-#main-content {
-    transition: opacity 0.3s ease-in-out;
+/* --- HTMX Transition Style --- */
+/* This class is added by HTMX during the swap phase to create a smooth fade-out */
+#main-content.htmx-swapping {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
 }
 
 #blurCanvas {
@@ -175,7 +175,7 @@ body, #main-content, html {
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    transition: opacity 0.3s ease-in-out;
+    /* Removed opacity transition as it's now handled by htmx-swapping class */
 }
 
 .content-container.scrollable {

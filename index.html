@@ -42,13 +42,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <link rel="stylesheet" href="style.css">
+
+    <!-- Add HTMX Script -->
+    <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
 </head>
-<body>
+<body hx-boost="true" hx-target="#main-content" hx-swap="innerHTML">
     <canvas id="portfolioCanvas" class="fixed top-0 left-0 w-full h-full z-0"></canvas>
     <canvas id="blurCanvas" class="fixed top-0 left-0 w-full h-full z-0"></canvas>
 
     <header class="fixed top-0 left-0 w-full p-4 z-50 bg-gray-900/50 backdrop-blur-md">
         <div class="container mx-auto flex justify-center items-center">
+            <!-- HTMX attributes will be inherited by these links from the body tag -->
             <nav class="flex items-center space-x-4 sm:space-x-6 text-md sm:text-lg">
                 <a href="home.html" class="nav-link text-gray-300 transition-colors duration-300">Home</a>
                 <a href="projects.html" class="nav-link text-gray-300 transition-colors duration-300">Projects</a>
@@ -77,11 +81,12 @@
                 Welcome to my space. I specialize in building practical and functional user experiences that blend design with technology. Explore my work and feel free to get in touch.
             </p>
             <div class="mt-8 flex justify-center gap-4">
-                <a href="#" id="view-work-btn" class="btn text-white font-bold py-3 px-6 rounded-lg flex items-center gap-2">
+                 <!-- These buttons now use HTMX attributes directly -->
+                <a href="projects.html" hx-push-url="true" class="btn text-white font-bold py-3 px-6 rounded-lg flex items-center gap-2">
                     <i class="fas fa-briefcase"></i>
                     View My Work
                 </a>
-                <a href="#" id="get-in-touch-btn" class="btn text-white font-bold py-3 px-6 rounded-lg flex items-center gap-2">
+                <a href="contact.html" hx-push-url="true" class="btn text-white font-bold py-3 px-6 rounded-lg flex items-center gap-2">
                     <i class="fas fa-envelope"></i>
                     Get In Touch
                 </a>
@@ -110,7 +115,7 @@
         <div id="info-panel" class="absolute bottom-full mb-2 right-0 w-64 bg-gray-800/80 backdrop-blur-md text-gray-300 text-sm p-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform translate-y-2 opacity-0 pointer-events-none">
             <h4 class="font-bold text-white mb-2">About This Site</h4>
             <p><strong>Author:</strong> Vaughn Avery</p>
-            <p><strong>Built with:</strong> HTML, Tailwind CSS, and vanilla JavaScript. AI tools were used to assist in the development process.</p>
+            <p><strong>Built with:</strong> HTML, Tailwind CSS, vanilla JavaScript, and HTMX. AI tools were used to assist in the development process.</p>
             <p class="mt-2 text-xs text-gray-400">The background canvas animation is performance-optimized for most devices.</p>
         </div>
         <button id="info-icon" title="Site Info" class="w-12 h-12 rounded-full flex items-center justify-center bg-gray-700 text-white shadow-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition-transform duration-200 hover:scale-110">

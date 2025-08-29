@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (butlerian) butlerian.value = '2';
     };
     
-    // ... (Keep the existing initializeLightbox function as is)
+    // --- Lightbox Functionality (Unchanged) ---
     let currentImageIndex = 0;
     let galleryImages = [];
     let lightboxInitialized = false;
@@ -213,31 +213,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function handleTouchEnd(e) {
             if (!touchStartX || !touchStartY) return;
-
             const touchEndX = e.changedTouches[0].clientX;
             const touchEndY = e.changedTouches[0].clientY;
-
             const deltaX = touchStartX - touchEndX;
             const deltaY = touchStartY - touchEndY;
-
-            if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                if (Math.abs(deltaX) > 50) {
-                    if (deltaX > 0) {
-                        showNextImage();
-                    } else {
-                        showPrevImage();
-                    }
-                }
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                if (deltaX > 0) showNextImage();
+                else showPrevImage();
             }
-
             touchStartX = 0;
             touchStartY = 0;
         }
 
         galleryImages.forEach((img, index) => {
-            img.addEventListener('click', () => {
-                openModal(index);
-            });
+            img.addEventListener('click', () => openModal(index));
         });
 
         if (modal) {
@@ -245,45 +234,18 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.addEventListener('touchend', handleTouchEnd, { passive: true });
         }
 
-        if (closeBtn) {
-            closeBtn.removeEventListener('click', closeModal);
-            closeBtn.addEventListener('click', closeModal);
-        }
-
-        if (nextBtn) {
-            nextBtn.removeEventListener('click', showNextImage);
-            nextBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                showNextImage();
-            });
-        }
-
-        if (prevBtn) {
-            prevBtn.removeEventListener('click', showPrevImage);
-            prevBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                showPrevImage();
-            });
-        }
-
-        if (modal) {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-        }
-
-        if (modalImage) {
-            modalImage.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-        }
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNextImage(); });
+        if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrevImage(); });
+        if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        if (modalImage) modalImage.addEventListener('click', (e) => e.stopPropagation());
         
         lightboxInitialized = true;
     }
 
     function initializeProjectsPage() {
+        // Reset lightbox state for newly loaded content
+        lightboxInitialized = false; 
         initializeLightbox();
     }
 
@@ -303,90 +265,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const infoPanel = document.getElementById('info-panel');
     const mainContent = document.getElementById('main-content');
 
-    // --- REVISED: loadContent function with live blur animation ---
-    async function loadContent(url) {
-        try {
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            const data = await response.text();
+    // --- HTMX Integration ---
+    // The previous `loadContent` function has been replaced by HTMX event listeners.
 
-            mainContent.style.opacity = '0';
-            
-            // Start the blur animation loop
-            let rect;
-            const animateBlur = () => {
-                if (!rect) return; // Don't draw if rect isn't defined
-                blurCtx.clearRect(0, 0, blurCanvas.width, blurCanvas.height);
-                blurCtx.save();
-                blurCtx.filter = 'blur(4px)';
-                blurCtx.drawImage(canvas, 0, 0);
-                blurCtx.restore();
-
-                blurCtx.save();
-                blurCtx.beginPath();
-                blurCtx.rect(rect.left, rect.top, rect.width, rect.height);
-                blurCtx.clip();
-                blurCtx.clearRect(0, 0, blurCanvas.width, blurCanvas.height);
-                blurCtx.drawImage(canvas, 0, 0);
-                blurCtx.restore();
-
-                blurAnimationId = requestAnimationFrame(animateBlur);
-            };
-            
-            await new Promise(resolve => setTimeout(resolve, 300));
-
-            mainContent.innerHTML = data;
-            window.scrollTo(0, 0);
-
-            const newContainer = mainContent.querySelector('.content-container');
-            if (newContainer) {
-                rect = newContainer.getBoundingClientRect();
-                if (!isReducedMotion) {
-                    blurAnimationId = requestAnimationFrame(animateBlur);
-                }
-                newContainer.classList.add('animate-slide-down');
-            }
-
-            mainContent.style.opacity = '1';
-
-            setTimeout(() => {
-                cancelAnimationFrame(blurAnimationId); // Stop the blur loop
-                blurCtx.clearRect(0, 0, blurCanvas.width, blurCanvas.height);
-            }, 800);
-
-            if (url.includes('projects.html')) initializeProjectsPage();
-            else if (url.includes('contact.html')) setTimeout(initializeBotChecker, 100);
-            
-            enhanceMobileInteractions();
-        } catch (error) {
-            mainContent.innerHTML = `<p class="text-center text-red-400">Error loading content: ${error.message}</p>`;
-            mainContent.style.opacity = '1';
-            cancelAnimationFrame(blurAnimationId); // Ensure blur stops on error
-            blurCtx.clearRect(0, 0, blurCanvas.width, blurCanvas.height);
+    // Handle events after new content is swapped in by HTMX
+    document.body.addEventListener('htmx:afterSwap', function(event) {
+        // Re-initialize JS for the new content
+        const requestPath = event.detail.pathInfo.requestPath;
+        if (requestPath.includes('projects.html')) {
+            initializeProjectsPage();
+        } else if (requestPath.includes('contact.html')) {
+            setTimeout(initializeBotChecker, 100);
         }
-    }
-
-    function loadInitialPage() {
-        const initialPage = new URLSearchParams(window.location.search).get('page');
-        const homeLink = document.querySelector('a[href="home.html"]');
-        const navLinks = document.querySelectorAll('.nav-link');
         
-        navLinks.forEach(link => {
-            link.classList.remove('active', 'text-white', 'font-bold');
-            link.classList.add('text-gray-300');
-        });
+        enhanceMobileInteractions();
+        updatePageMeta(requestPath);
+        updateActiveNav(requestPath);
 
-        if (initialPage && initialPage !== 'home') {
-            const linkToActivate = document.querySelector(`a[href="${initialPage}.html"]`);
-            if (linkToActivate) linkToActivate.click();
-            else homeLink.click();
-        } else {
-            if (homeLink) {
-                homeLink.classList.add('active', 'text-white', 'font-bold');
-                homeLink.classList.remove('text-gray-300');
-            }
+        // Add the slide-down animation to the new content
+        const newContainer = mainContent.querySelector('.content-container');
+        if (newContainer) {
+            newContainer.classList.add('animate-slide-down');
         }
-    }
+
+        // Stop the blur effect
+        setTimeout(() => {
+            cancelAnimationFrame(blurAnimationId);
+            if (blurCtx) {
+                blurCtx.clearRect(0, 0, blurCanvas.width, blurCanvas.height);
+            }
+        }, 500); // Allow time for content animation
+    });
+    
+    // Animate blur effect before HTMX swaps the content
+    document.body.addEventListener('htmx:beforeRequest', function() {
+        if (isReducedMotion) return;
+        const animateBlur = () => {
+            blurCtx.clearRect(0, 0, blurCanvas.width, blurCanvas.height);
+            blurCtx.save();
+            blurCtx.filter = 'blur(4px)';
+            blurCtx.drawImage(canvas, 0, 0);
+            blurCtx.restore();
+            blurAnimationId = requestAnimationFrame(animateBlur);
+        };
+        blurAnimationId = requestAnimationFrame(animateBlur);
+    });
 
     const pageConfig = {
         'home.html': { title: 'Vaughn Avery - Junior UX Designer & Frontend Developer', description: 'Junior UX Designer with experience in UI/UX design, frontend development, and user research. Available for full-time UX roles in remote.' },
@@ -396,7 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     function resizeCanvas() {
-        // Resize both canvases
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         blurCanvas.width = window.innerWidth;
@@ -421,21 +343,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updatePageMeta(page) {
-        const config = pageConfig[page];
+        const pageName = page.split('/').pop();
+        const config = pageConfig[pageName];
         if (config) {
             document.title = config.title;
-            let metaDesc = document.querySelector('meta[name="description"]');
-            if (metaDesc) metaDesc.setAttribute('content', config.description);
-            let ogTitle = document.querySelector('meta[property="og:title"]');
-            if (ogTitle) ogTitle.setAttribute('content', config.title);
-            let ogDesc = document.querySelector('meta[property="og:description"]');
-            if (ogDesc) ogDesc.setAttribute('content', config.description);
+            document.querySelector('meta[name="description"]').setAttribute('content', config.description);
+            document.querySelector('meta[property="og:title"]').setAttribute('content', config.title);
+            document.querySelector('meta[property="og:description"]').setAttribute('content', config.description);
         }
     }
-
-    function updateScrollPosition() {
-        ticking = false;
+    
+    function updateActiveNav(pageUrl) {
+        const pageName = pageUrl.split('/').pop();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active', 'text-white', 'font-bold');
+            link.classList.add('text-gray-300');
+            if (link.getAttribute('href') === pageName) {
+                link.classList.add('active', 'text-white', 'font-bold');
+                link.classList.remove('text-gray-300');
+            }
+        });
     }
+
+    function updateScrollPosition() { ticking = false; }
 
     const colorizeButton = document.getElementById('colorize');
     colorizeButton.addEventListener('click', () => {
@@ -451,6 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
         else animationId = requestAnimationFrame(animate);
     });
 
+    // Event delegation for contact form submission - THIS REMAINS THE SAME
     mainContent.addEventListener('submit', async (event) => {
         if (event.target && event.target.id === 'contact-form') {
             event.preventDefault();
@@ -473,9 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     successMessage.classList.remove('hidden');
                     form.reset();
-                } else {
-                    throw new Error('Form submission failed');
-                }
+                } else { throw new Error('Form submission failed'); }
             } catch (error) {
                 errorMessage.classList.remove('hidden');
             } finally {
@@ -486,7 +415,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Event delegation for various clicks - THIS REMAINS MOSTLY THE SAME
     mainContent.addEventListener('click', (event) => {
+        // Email reveal
         if (event.target && event.target.id === 'email-reveal') {
             const emailSpan = event.target;
             if (emailSpan.getAttribute('data-revealed')) return;
@@ -502,6 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
             emailSpan.parentNode.replaceChild(mailLink, emailSpan);
         }
         
+        // Project case study toggle
         const toggleButton = event.target.closest('.case-study-toggle');
         if (toggleButton) {
             const projectId = toggleButton.getAttribute('data-project');
@@ -519,18 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        const viewWorkButton = event.target.closest('#view-work-btn');
-        if (viewWorkButton) {
-            event.preventDefault();
-            document.querySelector('header .nav-link[href="projects.html"]').click();
-        }
-
-        const getInTouchButton = event.target.closest('#get-in-touch-btn');
-        if (getInTouchButton) {
-            event.preventDefault();
-            document.querySelector('header .nav-link[href="contact.html"]').click();
-        }
-        
+        // Profile image easter egg
         const profileImage = event.target.closest('.profile-image');
         if (profileImage) {
             let clickCount = parseInt(profileImage.getAttribute('data-click-count') || '0');
@@ -550,41 +471,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'childList') {
-                const contactForm = document.getElementById('contact-form');
-                const projectsPageLoaded = document.querySelector('.project-showcase');
-                if (projectsPageLoaded) initializeProjectsPage();
-                if (contactForm && !contactForm.getAttribute('data-bot-checker-initialized')) {
-                    initializeBotChecker();
-                    contactForm.setAttribute('data-bot-checker-initialized', 'true');
-                }
-            }
-        });
-    });
-    
-    observer.observe(mainContent, { childList: true, subtree: true });
-
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const url = e.target.getAttribute('href');
-            
-            navLinks.forEach(navLink => {
-                navLink.classList.remove('active', 'text-white', 'font-bold');
-                navLink.classList.add('text-gray-300');
-            });
-            e.target.classList.add('active', 'text-white', 'font-bold');
-            e.target.classList.remove('text-gray-300');
-
-            loadContent(url);
-            history.pushState(null, '', `?page=${url.split('.')[0]}`);
-            updatePageMeta(url);
-        });
-    });
-
     if (infoIcon && infoPanel) {
         const hidePanel = () => {
             infoPanel.classList.remove('opacity-100', 'translate-y-0');
@@ -596,8 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         infoIcon.addEventListener('click', (event) => {
             event.stopPropagation();
-            const isVisible = infoPanel.classList.contains('opacity-100');
-            if (isVisible) hidePanel();
+            if (infoPanel.classList.contains('opacity-100')) hidePanel();
             else showPanel();
         });
         document.addEventListener('click', (event) => {
@@ -622,12 +507,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
+    // Initial setup
     resizeCanvas();
     initPoints();
     animate();
     enhanceMobileInteractions();
-    loadInitialPage();
-
+    updateActiveNav('home.html'); // Set initial active link
+    
     window.addEventListener('resize', () => {
         resizeCanvas();
         initPoints();
