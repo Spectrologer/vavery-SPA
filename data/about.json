@@ -1,0 +1,77 @@
+{
+  "about": {
+    "image": "images/me-thumb.webp",
+    "imageAlt": "A portrait of Vaughn Avery",
+    "title": "About Me",
+    "description": "I'm a resourceful and adaptable designer with a passion for learning and a proven ability to master new tools and concepts quickly. My background blends design, art, and front-end development, allowing me to navigate complex challenges and deliver elegant solutions. I am committed to growing professionally and contributing my skills to a collaborative and successful team."
+  },
+  "technicalSkills": [
+    {
+      "icon": "fas fa-layer-group",
+      "name": "Adobe Suite"
+    },
+    {
+      "icon": "fab fa-google-drive",
+      "name": "Google Suite"
+    },
+    {
+      "icon": "fas fa-file-word",
+      "name": "Office 365"
+    },
+    {
+      "icon": "fab fa-html5",
+      "name": "HTML5 & CSS3"
+    },
+    {
+      "icon": "fab fa-github",
+      "name": "Git & GitHub"
+    },
+    {
+      "icon": "fas fa-object-ungroup",
+      "name": "UI/UX Design"
+    },
+    {
+      "icon": "fab fa-figma",
+      "name": "Figma"
+    },
+    {
+      "icon": "fas fa-terminal",
+      "name": "Prompt Engineering"
+    }
+  ],
+  "uxSkills": [
+    {
+      "title": "User Research & Testing",
+      "icon": "fas fa-users",
+      "items": [
+        "User interviews and surveys",
+        "Usability testing and analysis",
+        "Persona development",
+        "User journey mapping"
+      ]
+    },
+    {
+      "title": "Design & Prototyping",
+      "icon": "fas fa-pencil-ruler",
+      "items": [
+        "Wireframing and prototyping",
+        "Information architecture",
+        "Responsive web design",
+        "Design systems and style guides",
+        "AI-assisted prototyping"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "Freelance Designer & Generalist",
+      "period": "2010 - Present",
+      "description": "As a self-employed design generalist, I've worked with various clients on branding, web design, and digital art projects. I'm now seeking a full-time role to apply my diverse skill set in a collaborative team environment."
+    },
+    {
+      "title": "Baker",
+      "period": "2023 - Present",
+      "description": "In a high-volume bakery, I honed my skills in precision, time management, and consistency. This role requires meticulous attention to detail and the ability to adapt quickly in a fast-paced environment. <br> Day to day, this is how I bring in the bread."
+    }
+  ]
+}

@@ -41,6 +41,13 @@ const Navigation = (function() {
             if (typeof Lightbox !== 'undefined') {
                 Lightbox.initializeProjectsPage();
             }
+            if (typeof DataBinding !== 'undefined') {
+                DataBinding.initPage('projects');
+            }
+        } else if (requestPath.includes('about.html')) {
+            if (typeof DataBinding !== 'undefined') {
+                DataBinding.initPage('about');
+            }
         } else if (requestPath.includes('contact.html')) {
             if (typeof Forms !== 'undefined') {
                 Forms.initializeBotChecker();

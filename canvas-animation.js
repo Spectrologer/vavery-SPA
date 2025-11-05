@@ -64,13 +64,27 @@ const CanvasAnimation = (function() {
     }
 
     function detectLowPowerDevice() {
+        // Check hardware concurrency (CPU cores)
+        const cores = navigator.hardwareConcurrency || 2;
+        if (cores <= 2) return true;
+
+        // Check device memory if available
+        if ('deviceMemory' in navigator && navigator.deviceMemory <= 4) return true;
+
+        // Check connection if available
+        if ('connection' in navigator) {
+            const connection = navigator.connection;
+            if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') return true;
+        }
+
         const tempCanvas = document.createElement('canvas');
         const gl = tempCanvas.getContext('webgl') || tempCanvas.getContext('experimental-webgl');
         if (!gl) return true;
         const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
         if (debugInfo) {
             const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-            return renderer.includes('Intel') || renderer.includes('Mali') || renderer.includes('Adreno');
+            return renderer.includes('Intel') || renderer.includes('Mali') || renderer.includes('Adreno') ||
+                   renderer.includes('PowerVR') || renderer.includes('VideoCore');
         }
         return false;
     }

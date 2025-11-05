@@ -1,0 +1,203 @@
+{
+  "development": [
+    {
+      "id": "chress",
+      "title": "Chress",
+      "image": "images/chress.png",
+      "imageAlt": "A screenshot of the Chress game interface.",
+      "tags": [
+        { "text": "Game Development", "color": "red" },
+        { "text": "Web Development", "color": "blue" },
+        { "text": "TypeScript", "color": "cyan" },
+        { "text": "AI Management", "color": "green" }
+      ],
+      "description": "Chress is a browser-based RPG with turn-based combat and infinite procedural worlds. It runs in browsers on desktop and mobile without installation. The codebase was developed using parallel agent management - while <strong>all art assets and music were created by hand</strong>.",
+      "stats": {
+        "duration": "October - Ongoing",
+        "teamSize": "1",
+        "platform": "Web (Mobile & Desktop)"
+      },
+      "links": [
+        {
+          "text": "Try Game",
+          "url": "https://spectrologer.github.io/Chress/",
+          "type": "primary",
+          "icon": "fas fa-external-link-alt"
+        }
+      ],
+      "caseStudy": {
+        "problemStatement": "This project started as a sandbox for me to explore game mechanics and AI. The challenge then became: how to build a big browser-based game with many AI agents without being buried in tech debt?",
+        "keyChallenges": [
+          "Managing complex game states.",
+          "Ensuring interconnectivity in procedurally generated infinite zones.",
+          "Isolating and fixing bugs from complex AI agent interactions.",
+          "Smooth HTML5 Canvas rendering on all devices"
+        ],
+        "solutionApproach": "Vite's testing strategy was essential for managing AI complexity. This allowed for isolated debugging of agent behaviors, preventing tangled code. The project also uses a modular, event-driven architecture to keep systems decoupled and scalable.",
+        "keyFeatures": [
+          "Turn-Based Tactical Combat: Engage in strategic battles with 6 chess-inspired enemies. Complete Chess challenges with power-ups.",
+          "Infinite Procedural World: Endlessly generated and handcrafted world with diverse zones, from overworlds to underground dungeons.",
+          "Barter with dozens of unique NPCs, play with a complex inventory of items and equipment, and interact with a dynamic environment.",
+          "Progressive Web: Complete offline play capabilities and automatic updates."
+        ]
+      }
+    }
+  ],
+  "design": [
+    {
+      "id": "ochlo",
+      "title": "Ochlo",
+      "image": "images/ochlo.png",
+      "imageAlt": "A screenshot of the Ochlo application interface.",
+      "tags": [
+        { "text": "UX Design", "color": "purple" },
+        { "text": "Security", "color": "blue" }
+      ],
+      "description": "Ochlo provides secure, decentralized communication for groups that need to organize in real-time. By allowing anyone to create an instant, encrypted local network without user accounts, it's a vital tool for community action, public demonstrations, and any event where privacy and immediate coordination are paramount.",
+      "stats": {
+        "duration": "October 2024 - 2 Weeks",
+        "teamSize": "Solo",
+        "platform": "Mobile"
+      },
+      "links": [
+        {
+          "text": "View on Behance",
+          "url": "https://www.behance.net/vavery",
+          "type": "secondary",
+          "icon": "fas fa-external-link-alt"
+        }
+      ],
+      "caseStudy": {
+        "problemStatement": "Current communication tools require account creation and centralized servers, creating privacy concerns and barriers to quick, secure communication in sensitive situations.",
+        "keyChallenges": [
+          "Balancing security with ease of use",
+          "Creating intuitive onboarding without accounts",
+          "Designing for various technical skill levels"
+        ],
+        "solutionApproach": "I designed a streamlined interface that generates secure communication channels instantly, using visual metaphors that make complex security concepts accessible to all users.",
+        "keyFeatures": [
+          "One-tap event creation",
+          "Visual encryption status indicators",
+          "Progressive disclosure of advanced features"
+        ]
+      }
+    },
+    {
+      "id": "eugene",
+      "title": "Eugene Access",
+      "image": "images/access.png",
+      "imageAlt": "A screenshot of the Eugene Access application.",
+      "tags": [
+        { "text": "Public Service", "color": "green" },
+        { "text": "Accessibility", "color": "yellow" }
+      ],
+      "description": "Our public spaces are often hostile to basic human needs. Eugene Access is my one-day design challenge to that reality. It's a zero-friction tool that provides immediate answers: Is the bathroom public? Is it clean? What's the wifi password? This is about redesigning public space to be for the public.",
+      "stats": {
+        "duration": "November 2024 - Ongoing",
+        "teamSize": "Solo",
+        "platform": "Web"
+      },
+      "links": [
+        {
+          "text": "View Live App",
+          "url": "https://spectrologer.github.io/Eugene-Dowtown-Access/",
+          "type": "primary",
+          "icon": "fas fa-external-link-alt"
+        },
+        {
+          "text": "View on Behance",
+          "url": "https://www.behance.net/vavery",
+          "type": "secondary",
+          "icon": "fas fa-external-link-alt"
+        }
+      ],
+      "caseStudy": {
+        "problemStatement": "People in crisis situations struggle to quickly find essential services due to fragmented information sources and complex navigation systems in existing platforms.",
+        "designConstraints": [
+          "24-hour design challenge",
+          "Single-screen interface requirement",
+          "Accessibility-first approach"
+        ],
+        "designPhilosophy": "Prioritized clarity and speed over visual complexity. Every element serves the core purpose: connecting people to help as quickly as possible.",
+        "keyDecisions": [
+          "Large, high-contrast buttons",
+          "Icon + text labeling system",
+          "Emergency services prominently featured"
+        ]
+      }
+    },
+    {
+      "id": "cashcache",
+      "title": "Cash Cache",
+      "image": "images/coim.png",
+      "imageAlt": "A screenshot of the Cash Cache income visualizer application.",
+      "tags": [
+        { "text": "FinTech", "color": "blue" },
+        { "text": "Data Viz", "color": "orange" }
+      ],
+      "description": "I built Cash Cache on a simple premise: managing money is more motivating when you can actually see it. This wacky income visualizer turns your earnings into a dynamic animation, offering a more satisfying way to watch your finances accumulate.",
+      "stats": {
+        "duration": "November 2024 3 Days",
+        "teamSize": "Solo",
+        "platform": "Mobile"
+      },
+      "links": [
+        {
+          "text": "View on Behance",
+          "url": "https://www.behance.net/vavery",
+          "type": "secondary",
+          "icon": "fas fa-external-link-alt"
+        }
+      ],
+      "caseStudy": {
+        "problemStatement": "Traditional financial apps present data in boring, text-heavy formats that fail to engage users or provide meaningful insights into spending patterns.",
+        "researchInsights": [
+          "Users avoid checking financial apps",
+          "Visual data is processed 60x faster than text",
+          "Gamification increases engagement"
+        ],
+        "visualStrategy": "Created an engaging visual language using progressive data visualization that reveals insights gradually, making complex financial data approachable and actionable.",
+        "impactGoals": [
+          "Increase user engagement with finances",
+          "Make budgeting feel rewarding",
+          "Simplify complex financial concepts"
+        ]
+      }
+    }
+  ],
+  "art": {
+    "title": "Art",
+    "description": "A sample of some of my random works.",
+    "images": [
+      {
+        "thumb": "images/a1-full.png",
+        "full": "images/a1-full.png",
+        "alt": "Pixel art of a cardboard box with a face under a lemon tree.",
+        "caption": "A lonely cardboard box finds a friend in a lemon tree."
+      },
+      {
+        "thumb": "images/a2-thumb.webp",
+        "full": "images/a2-full.webp",
+        "alt": "Surrealist black and white ink drawing of a desert wanderer.",
+        "caption": "A surrealist depiction of a desert wanderer."
+      },
+      {
+        "thumb": "images/a3-thumb.webp",
+        "full": "images/a3-full.webp",
+        "alt": "Digital painting of a wooden dog looking at a dumbbell.",
+        "caption": "A wooden dog contemplates the meaning of heavy things."
+      },
+      {
+        "thumb": "images/a4-thumb.webp",
+        "full": "images/a4-full.webp",
+        "alt": "Painting of a white jellyfish floating in space.",
+        "caption": "A jellyfish drifts through the cosmos."
+      }
+    ]
+  },
+  "easterEgg": {
+    "url": "https://spectrologer.github.io/Material-Tower-Defense/",
+    "title": "A little game I made for fun.",
+    "description": "(This is just a silly game I made for fun.)"
+  }
+}
