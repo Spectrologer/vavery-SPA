@@ -1,5 +1,89 @@
 <div class="content-container scrollable">
-    
+
+    <!-- The header for my development work -->
+    <h1 class="text-4xl sm:text-5xl">Development</h1>
+
+    <!-- A grid to hold all the development project cards -->
+    <div class="space-y-12 w-full">
+
+        <!-- Project: Chress -->
+        <div class="project-showcase bg-gray-800/30 rounded-xl p-6 border border-gray-700/50">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="project-image-container flex justify-center">
+                    <img src="images/chress.png" alt="A screenshot of the Chress game interface." class="w-full h-auto rounded-lg shadow-lg object-contain max-w-80">
+                </div>
+                <div class="project-info">
+                    <div class="flex items-center flex-wrap gap-2 md:gap-4 mb-4">
+                        <h3 id="chress-title" class="text-2xl font-bold text-white">Chress</h3>
+                        <span class="px-3 py-1 bg-red-600/20 text-red-300 text-sm rounded-full">Game Development</span>
+                        <span class="px-3 py-1 bg-blue-600/20 text-blue-300 text-sm rounded-full">Web Development</span>
+                        <span class="px-3 py-1 bg-cyan-600/20 text-cyan-300 text-sm rounded-full">TypeScript</span>
+                        <span class="px-3 py-1 bg-green-600/20 text-green-300 text-sm rounded-full">AI Management</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">Chress is a browser-based RPG with turn-based combat and infinite procedural worlds. It runs in browsers on desktop and mobile without installation. The codebase was developed using parallel agent management - while <strong>all art assets and music were created by hand</strong>.
+                    </p>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-900/50 rounded-lg">
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">Duration: <br/> October - Ongoing</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">1</div>
+                            <div class="text-sm text-gray-400">Team Size</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">Web (Mobile & Desktop)</div>
+                            <div class="text-sm text-gray-400">Platform</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button class="case-study-toggle btn bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg font-semibold text-white transition-all" data-project="chress" aria-expanded="false" aria-controls="chress-case-study">
+                            <i class="fas fa-chevron-down mr-2 transition-transform"></i>
+                            View Case Study
+                        </button>
+                        <a href="https://spectrologer.github.io/Chress/" target="_blank" class="btn bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold text-white text-center transition-all">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Try Game
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expandable Case Study Content -->
+            <div class="case-study-content mt-8 border-t border-gray-700/50 pt-8 overflow-x-auto" id="chress-case-study" aria-labelledby="chress-title" aria-hidden="true">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 min-w-0">
+                    <div>
+                        <h4 class="text-xl font-semibold text-white mb-4">Problem Statement</h4>
+                        <p class="text-gray-300 mb-6">This project started as a sandbox for me to explore game mechanics and AI. The challenge then became: how to build a big browser-based game with many AI agents without being buried in tech debt?</p>
+
+                        <h4 class="text-xl font-semibold text-white mb-4">Key Challenges</h4>
+                        <ul class="text-gray-300 space-y-2 mb-6">
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-red-400 mt-2 mr-3 text-xs"></i>Managing complex game states.</li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-red-400 mt-2 mr-3 text-xs"></i>Ensuring interconnectivity in procedurally generated infinite zones.</li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-red-400 mt-2 mr-3 text-xs"></i>Isolating and fixing bugs from complex AI agent interactions.</li>
+                            <li class="flex items-start"><i class="fas fa-dot-circle text-red-400 mt-2 mr-3 text-xs"></i>Smooth HTML5 Canvas rendering on all devices</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-white mb-4">Solution Approach</h4>
+                        <p class="text-gray-300 mb-6">Vite's testing strategy was essential for managing AI complexity. This allowed for isolated debugging of agent behaviors, preventing tangled code. The project also uses a modular, event-driven architecture to keep systems decoupled and scalable.</p>
+
+                        <h4 class="text-xl font-semibold text-white mb-4">Key Features</h4>
+                        <ul class="text-gray-300 space-y-2">
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Turn-Based Tactical Combat: Engage in strategic battles with 6 chess-inspired enemies. Complete Chess challenges with power-ups.</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Infinite Procedural World: Endlessly generated and handcrafted world with diverse zones, from overworlds to underground dungeons.</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Barter with dozens of unique NPCs, play with a complex inventory of items and equipment, and interact with a dynamic environment.</li>
+                            <li class="flex items-start"><i class="fas fa-check text-green-400 mt-2 mr-3 text-xs"></i>Progressive Web: Complete offline play capabilities and automatic updates.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <!-- The header for my design work -->
     <h1 class="text-4xl sm:text-5xl">Design</h1>
     <p class="text-gray-400 mb-12 max-w-2xl text-center mx-auto">Here's some of the stuff I've worked on.</p>
@@ -26,8 +110,7 @@
                     <!-- Quick Stats -->
                     <div class="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-900/50 rounded-lg">
                         <div class="text-center">
-                            <div class="text-xl font-bold text-white">2 weeks</div>
-                            <div class="text-sm text-gray-400">Timeline</div>
+                            <div class="text-xl font-bold text-white">Duration: <br/> October 2024 - 2 Weeks</div>
                         </div>
                         <div class="text-center">
                             <div class="text-xl font-bold text-white">Solo</div>
@@ -88,7 +171,7 @@
                     <img src="images/access.png" alt="A screenshot of the Eugene Access application." class="w-full h-auto rounded-lg shadow-lg object-contain max-w-40">
                 </div>
                 <div class="project-info">
-                    <div class="flex items-center gap-4 mb-4">
+                    <div class="flex items-center flex-wrap gap-2 md:gap-4 mb-4">
                         <h3 id="eugene-title" class="text-2xl font-bold text-white">Eugene Access</h3>
                         <span class="px-3 py-1 bg-green-600/20 text-green-300 text-sm rounded-full">Public Service</span>
                         <span class="px-3 py-1 bg-yellow-600/20 text-yellow-300 text-sm rounded-full">Accessibility</span>
@@ -101,8 +184,7 @@
                     <!-- Quick Stats -->
                     <div class="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-900/50 rounded-lg">
                         <div class="text-center">
-                            <div class="text-xl font-bold text-white">1 day</div>
-                            <div class="text-sm text-gray-400">Timeline</div>
+                            <div class="text-xl font-bold text-white">Duration:<br/> November 2024 - Ongoing</div>
                         </div>
                         <div class="text-center">
                             <div class="text-xl font-bold text-white">Solo</div>
@@ -178,8 +260,7 @@
                     <!-- Quick Stats -->
                     <div class="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-900/50 rounded-lg">
                         <div class="text-center">
-                            <div class="text-xl font-bold text-white">3 weeks</div>
-                            <div class="text-sm text-gray-400">Timeline</div>
+                            <div class="text-xl font-bold text-white">Duration: November 2024 3 Days</div>
                         </div>
                         <div class="text-center">
                             <div class="text-xl font-bold text-white">Solo</div>
@@ -257,7 +338,7 @@
     
     <!-- Easter Egg -->
     <div class="text-center mt-20 border-t border-gray-700/50 pt-12">
-        <a href="https://spectrologer.github.io/Material-Tower-Defense/" target="_blank" class="inline-block p-4 rounded-full bg-gray-800/50 hover:bg-gray-700 transition-all duration-300 transform hover:scale-110" title="A little game I made for fun.">
+        <a href="https://spectrologer.github.io/Material-Tower-Defense/" target="_blank" class="inline-block p-4 rounded-full bg-gray-800/50 hover:bg-gray-700 transition-all Duration:-300 transform hover:scale-110" title="A little game I made for fun.">
             <i class="fas fa-chess-rook text-4xl text-gray-300"></i>
         </a>
         <p class="text-xs text-gray-500 mt-4">(This is just a silly game I made for fun.)</p>
