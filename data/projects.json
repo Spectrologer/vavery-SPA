@@ -4,14 +4,14 @@
       "id": "chress",
       "title": "Chress",
       "image": "images/chress.png",
-      "imageAlt": "A screenshot of the Chress game interface.",
+      "imageAlt": "A screenshot of the Chesse game interface.",
       "tags": [
         { "text": "Game Development", "color": "red" },
         { "text": "Web Development", "color": "blue" },
         { "text": "TypeScript", "color": "cyan" },
         { "text": "AI Management", "color": "green" }
       ],
-      "description": "Chress is a browser-based RPG with turn-based combat and infinite procedural worlds. It runs on desktop and mobile browsers without installation. The game was built with parallel agent management, and all art assets and music were created by hand. The project is now being built from the ground up, fully handcoded, and you can follow our progress at https://squigglekit.com/.",
+      "description": "Chesse is a browser-based RPG with turn-based combat and infinite procedural worlds. It runs on desktop and mobile browsers without installation. The game was built with parallel agent management, and all art assets and music were created by hand. The project is now being built from the ground up, fully handcoded, and you can follow our progress at https://squigglekit.com/.",
       "stats": {
         "duration": "October - Ongoing",
         "teamSize": "1",
