@@ -11,7 +11,7 @@
         { "text": "TypeScript", "color": "cyan" },
         { "text": "AI Management", "color": "green" }
       ],
-      "description": "Chress is a browser-based RPG with turn-based combat and infinite procedural worlds. It runs in browsers on desktop and mobile without installation. The codebase was developed using parallel agent management - while <strong>all art assets and music were created by hand</strong>.",
+      "description": "Chress is a browser-based RPG with turn-based combat and infinite procedural worlds. It runs on desktop and mobile browsers without installation. The game was built with parallel agent management, and all art assets and music were created by hand.",
       "stats": {
         "duration": "October - Ongoing",
         "teamSize": "1",
@@ -53,7 +53,7 @@
         { "text": "UX Design", "color": "purple" },
         { "text": "Security", "color": "blue" }
       ],
-      "description": "Ochlo provides secure, decentralized communication for groups that need to organize in real-time. By allowing anyone to create an instant, encrypted local network without user accounts, it's a vital tool for community action, public demonstrations, and any event where privacy and immediate coordination are paramount.",
+      "description": "Ochlo provides secure, decentralized communication for groups that need to organize in real time. It creates instant, encrypted local networks without requiring user accounts, making it useful for community action, public demonstrations, and any scenario where privacy and fast coordination matter.",
       "stats": {
         "duration": "October 2024 - 2 Weeks",
         "teamSize": "Solo",
@@ -91,7 +91,7 @@
         { "text": "Public Service", "color": "green" },
         { "text": "Accessibility", "color": "yellow" }
       ],
-      "description": "Our public spaces are often hostile to basic human needs. Eugene Access is my one-day design challenge to that reality. It's a zero-friction tool that provides immediate answers: Is the bathroom public? Is it clean? What's the wifi password? This is about redesigning public space to be for the public.",
+      "description": "Our public spaces often ignore basic human needs. Eugene Access is a one-day design challenge that provides instant answers: Is the bathroom public? Is it clean? What's the wifi password? The goal is to make public space truly usable for everyone.",
       "stats": {
         "duration": "November 2024 - Ongoing",
         "teamSize": "Solo",
@@ -135,7 +135,7 @@
         { "text": "FinTech", "color": "blue" },
         { "text": "Data Viz", "color": "orange" }
       ],
-      "description": "I built Cash Cache on a simple premise: managing money is more motivating when you can actually see it. This wacky income visualizer turns your earnings into a dynamic animation, offering a more satisfying way to watch your finances accumulate.",
+      "description": "Cash Cache is built on a simple premise: money matters more when you can see it clearly. This income visualizer turns your finances into a dynamic animation that makes tracking income more satisfying and engaging.",
       "stats": {
         "duration": "November 2024 3 Days",
         "teamSize": "Solo",
